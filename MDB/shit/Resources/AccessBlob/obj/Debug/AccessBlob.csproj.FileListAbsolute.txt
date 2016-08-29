@@ -1,0 +1,9 @@
+C:\Users\1\Desktop\AccessBlob\bin\Debug\AccessBlob.exe.config
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\bin\Debug\AccessBlob.exe.config
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\bin\Debug\AccessBlob.exe
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\bin\Debug\AccessBlob.pdb
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\obj\Debug\AccessBlob.csprojResolveAssemblyReference.cache
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\obj\Debug\AccessBlob.MainForm.resources
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\obj\Debug\AccessBlob.csproj.GenerateResource.Cache
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\obj\Debug\AccessBlob.exe
+C:\Users\1\workspace\MDBProject\Resources\AccessBlob\obj\Debug\AccessBlob.pdb
