@@ -1,6 +1,6 @@
 import java.awt.EventQueue;
 import javax.swing.border.EmptyBorder;
-//import net.proteanit.sql.DbUtils;
+import net.proteanit.sql.DbUtils;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -21,6 +21,7 @@ public class MDBProj2 extends JFrame {
 	private JLabel lblDBDir;
 	private JLabel lblFolderSaveDir;
 	private JTextField txtSaveDir;
+	private JButton btnLoadTable;
 
 	/**
 	 * Launch the application.
@@ -44,14 +45,14 @@ public class MDBProj2 extends JFrame {
 	public MDBProj2() {
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 636);
+		setBounds(100, 100, 1000, 876);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLoadTable = new JButton("Export...");	
-		btnLoadTable.addActionListener(new ActionListener() {
+		JButton btnExportFiles = new JButton("Export...");	
+		btnExportFiles.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e1) {
 				
 				//@SuppressWarnings("resource")
@@ -122,8 +123,8 @@ public class MDBProj2 extends JFrame {
 				
 			}
 		});
-		btnLoadTable.setBounds(45, 220, 150, 23);
-		contentPane.add(btnLoadTable);
+		btnExportFiles.setBounds(773, 220, 150, 23);
+		contentPane.add(btnExportFiles);
 		
 		JScrollPane SPaneModelTable = new JScrollPane();
 		SPaneModelTable.setBounds(45, 259, 878, 290);
@@ -154,8 +155,8 @@ public class MDBProj2 extends JFrame {
 		//Create a file load chooser
 		final JFileChooser fcLoad = new JFileChooser();
 		
-		JButton btnLoadDb = new JButton("Load DB");
-		btnLoadDb.addActionListener(new ActionListener() {
+		JButton btnImportDb = new JButton("Import DB");
+		btnImportDb.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 				if(fcLoad.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -169,8 +170,8 @@ public class MDBProj2 extends JFrame {
 				}
 			}
 		});
-		btnLoadDb.setBounds(45, 35, 115, 29);
-		contentPane.add(btnLoadDb);
+		btnImportDb.setBounds(45, 35, 115, 29);
+		contentPane.add(btnImportDb);
 		
 		
 		//Create a file save chooser
@@ -193,5 +194,52 @@ public class MDBProj2 extends JFrame {
 		});
 		btnSaveLocation.setBounds(45, 122, 150, 29);
 		contentPane.add(btnSaveLocation);
+		
+		btnLoadTable = new JButton("Load Table");
+		btnLoadTable.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				//connection belongs to java.sql.Connection class
+				Connection myConn = null;
+				Statement myStmnt = null;
+				ResultSet rs = null;
+				//PreparedStatement pst = null;
+				
+				InputStream input = null;
+				FileOutputStream output = null;
+				
+				String filePath = txtDBLoad.getText();
+				//System.out.println("File Path Location:" + filePath);
+				
+				try {
+					myConn = DriverManager.getConnection("jdbc:sqlite:" + filePath);
+					
+					//query to execute
+					myStmnt = myConn.createStatement();
+					String query = "select key, f_name, l_name, file from testTable ";
+					rs = myStmnt.executeQuery(query);
+					table.setModel(DbUtils.resultSetToTableModel(rs));
+					
+				} catch (Exception e2) {
+					e2.printStackTrace();
+				} finally {
+					if (input != null) {
+						try {
+							input.close();
+						} catch (IOException e3) {
+							e3.printStackTrace();
+						}
+					}
+					if (output != null) {
+						try {
+							output.close();
+						} catch (IOException e4) {
+							e4.printStackTrace();
+						}
+					}
+				}
+			}
+		});
+		btnLoadTable.setBounds(45, 217, 115, 29);
+		contentPane.add(btnLoadTable);
 	}
 }
