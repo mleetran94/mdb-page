@@ -19,5 +19,7 @@
 	<classpathentry kind="lib" path="Resources/sqlite-jdbc-3.8.7.jar"/>
 	<classpathentry kind="lib" path="Resources/sqlite-jdbc4-3.8.2-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="Resources/rs2xml.jar"/>
+	<classpathentry kind="lib" path="Resources/commons-io-2.5-javadoc.jar"/>
+	<classpathentry kind="lib" path="Resources/commons-io-2.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
